@@ -43,7 +43,7 @@ Para ver um cupom expirar depois de aplicado: aplique `KURIO10`, rode `__mocks.e
 **Endereço de carteira** (pagamento e tela Carteiras): `0x` seguido de 40 caracteres hexadecimais, por exemplo `0x71C7656EC7ab88b098defB751B7401B5f6d8976F`. Endereço curto ou sem `0x` mostra erro de validação. Evite `0x7B3C…9D0A` e `0xA91F…E82C`: já estão cadastrados em contas do mock e dão conflito.
 
 **Compra completa em 1 minuto:**
-1. Entre como `marina@email.com` e abra `/carrinho` (já tem 3 itens); clique em **Conectar e finalizar**.
+1. Entre como `marina@email.com` (o carrinho começa vazio), abra um NFT (ex.: `/nfts/nft-001`) e clique em **COMPRAR**; no carrinho, clique em **Conectar e finalizar**. Para ver o carrinho cheio como no layout, rode `__mocks.seedCart()` no console e recarregue.
 2. No pagamento, preencha nome de exibição, nome de usuário, nome do perfil, e-mail e código de indicação (qualquer texto, ex.: `KURIO-1`), escolha a rede e informe o endereço acima.
 3. Confirme a carteira escolhida e clique em **Conectar carteira**; a compra só confirma com a carteira conectada.
 4. Clique em **Confirmar compra**. O recibo aparece quando o pedido é confirmado.
@@ -123,6 +123,7 @@ Tudo é controlado pelo console, em `window.__mocks`:
 __mocks.setScenario('payment-pending')   // aplica um cenário (persiste)
 __mocks.getScenario()
 __mocks.reset()                          // reset único: apaga mocks, sessão e visitante
+__mocks.seedCart()                       // enche o carrinho com os 3 NFTs do layout (recarregue a página)
 __mocks.updateNft('nft-001', { price: '1.50' })                 // preço
 __mocks.updateNft('nft-006', { availability: { open: 5 } })     // estoque (emite nft.updated)
 __mocks.expireCoupon('KURIO10')          // cupom já aplicado expira

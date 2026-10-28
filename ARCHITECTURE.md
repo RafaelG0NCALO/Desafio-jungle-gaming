@@ -32,7 +32,7 @@ Responsabilidades por pasta: `api/` (contratos tipados e chamadas), `features/` 
 - Cada item guarda NFT, edição e quantidade; o servidor calcula preço, limite (`maxQuantity`), subtotal, desconto, taxa de rede e total. A **cotação vem sempre da API**, dentro da resposta do carrinho, e o cliente só a exibe. Valores em ETH são strings decimais; contas no cliente (ex.: total da linha no cálculo otimista) usam `decimal.js`.
 - A cotação também é um recurso próprio (`POST /quote`, sem efeito colateral): o formulário de cupom valida o código por ela antes de aplicar. O carrinho continua devolvendo a mesma `quote` embutida, para a tela não depender de duas chamadas.
 - Alterar quantidade é otimista, com rollback se a API recusar. Com vários cliques em voo, só a última resposta escreve no cache, para uma resposta atrasada não desfazer a escolha do usuário. Reduzir a quantidade é sempre permitido, mesmo acima do limite novo.
-- Visitantes começam com um carrinho de demonstração (o do layout).
+- O carrinho começa vazio. `__mocks.seedCart()` carrega os 3 NFTs do layout (para ver a tela cheia), e os testes o usam ao entrar.
 
 ## Pedido
 

@@ -16,7 +16,7 @@ export interface StoredCart {
 
 const STORAGE_KEY = 'kurio.mock.cart'
 
-const SEED: StoredCart = {
+export const DEMO_CART: StoredCart = {
   couponCode: null,
   lines: [
     { id: 'line-seed-1', nftId: 'nft-001', editionId: 'open', quantity: 2 },
@@ -58,12 +58,10 @@ function loadAll(): CartDb {
   return {}
 }
 
-const isVisitor = (owner: string) => owner.startsWith('v:')
-
 export function loadCart(owner: string): StoredCart {
   const stored = loadAll()[owner]
   if (stored) return stored
-  return isVisitor(owner) ? structuredClone(SEED) : { lines: [], couponCode: null }
+  return { lines: [], couponCode: null }
 }
 
 export function saveCart(owner: string, cart: StoredCart) {

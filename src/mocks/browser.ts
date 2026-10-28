@@ -4,6 +4,8 @@ import { realtimeHandlers } from './realtime/handler'
 import { connectionCount, dropConnections, publishNft, resendRecent, sendStale } from './realtime/hub'
 import { resumePendingOrders } from './realtime/settle'
 import { loadAuth, saveAuth } from './db/authStore'
+import { DEMO_CART, saveCart } from './db/cartStore'
+import { getToken, getVisitorId } from '@/lib/session'
 import { expireCoupon, findNft, updateNft } from './db/catalogStore'
 import { dropAllConnections } from './db/connectionStore'
 import { resetMockData } from './db/reset'
@@ -33,6 +35,11 @@ export const mockControls = {
     resend: resendRecent,
     sendStale: (id: string) => sendStale(findNft(id)!),
     connections: connectionCount,
+  },
+  async seedCart() {
+    const token = getToken()
+    const session = token ? (await loadAuth()).sessions[token] : undefined
+    saveCart(session ? `u:${session.userId}` : `v:${getVisitorId()}`, structuredClone(DEMO_CART))
   },
   async expireSession() {
     const db = await loadAuth()

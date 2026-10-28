@@ -57,7 +57,7 @@ test.describe('Cadastro, logout e troca de usuário', () => {
     await page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ }).filter({ visible: true }).click()
     await page.waitForURL('**/carrinho')
     await expect(page.getByText('Sage Nomad #009').filter({ visible: true }).first()).toBeVisible()
-    await app.login('rafael')
+    await app.login('rafael', { withCart: false })
     await page.goto('/carrinho')
     await expect(page.getByText('Sage Nomad #009').filter({ visible: true }).first()).toBeVisible()
   })

@@ -12,6 +12,7 @@ interface Mocks {
   updateNft: (id: string, patch: { price?: string; previousPrice?: string | null; availability?: Edition }) => unknown
   expireCoupon: (code: string) => void
   expireSession: () => Promise<void>
+  seedCart: () => Promise<void>
   disconnectWallet: () => void
   realtime: { drop: (blockMs?: number) => void; resend: () => number; sendStale: (id: string) => unknown; connections: () => number }
 }
@@ -87,9 +88,13 @@ export class Kurio {
     await expect.poll(() => this.realtime.connections()).toBeGreaterThan(0)
   }
 
-  async login(user: keyof typeof USERS = 'marina') {
+  async login(user: keyof typeof USERS = 'marina', { withCart = true } = {}) {
     const { email, password } = USERS[user]
     await this.page.goto('/?auth=login')
+    if (withCart) {
+      await this.mocksReady()
+      await this.page.evaluate(() => window.__mocks!.seedCart())
+    }
     await this.page.locator('#login-email').fill(email)
     await this.page.locator('#login-password').fill(password)
     await this.page.locator('#login-email').locator('xpath=ancestor::form').getByRole('button', { name: 'Entrar', exact: true }).click()

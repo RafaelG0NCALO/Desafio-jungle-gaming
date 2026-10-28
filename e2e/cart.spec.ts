@@ -3,6 +3,15 @@ import { expect, test } from './support/kurio'
 const rows = (page: import('@playwright/test').Page) => page.locator('[aria-label="Itens do carrinho"] > li')
 
 test.describe('Carrinho', () => {
+  test('o carrinho começa vazio para o visitante e para quem acabou de entrar', async ({ app, page }) => {
+    await page.goto('/carrinho')
+    await expect(page.getByRole('heading', { name: /vazio|nenhum/i }).first()).toBeVisible()
+    await app.login('rafael', { withCart: false })
+    await page.goto('/carrinho')
+    await expect(page.getByRole('heading', { name: /vazio|nenhum/i }).first()).toBeVisible()
+    await expect(rows(page)).toHaveCount(0)
+  })
+
   test('comprar a partir do detalhe leva ao carrinho com o item', async ({ app, page }) => {
     await app.login('marina')
     await page.goto('/nfts/nft-002')
@@ -85,13 +94,13 @@ test.describe('Carrinho', () => {
     await saved
 
     await page.evaluate(() => localStorage.removeItem('kurio.session.token'))
-    await app.login('rafael')
+    await app.login('rafael', { withCart: false })
     await page.goto('/carrinho')
     await expect(page.getByText('Emerald Ape #042')).toHaveCount(0)
     await expect(rows(page)).toHaveCount(0)
 
     await page.evaluate(() => localStorage.removeItem('kurio.session.token'))
-    await app.login('marina')
+    await app.login('marina', { withCart: false })
     await page.goto('/carrinho')
     await expect(rows(page).first().locator('output:visible')).toHaveText('3')
   })
