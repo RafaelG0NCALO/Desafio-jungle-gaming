@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-10-28T06:36:09.831Z",
+  "environment": {
+    "lighthouse": "13.5.0",
+    "chrome": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "benchmarkIndex": 3123,
+    "node": "v22.22.0",
+    "os": "Windows_NT 10.0.26200 (x64)",
+    "cpus": 12,
+    "vite": "^8.3.5"
+  },
+  "conditions": "Build de produção (vite build + vite preview), cenário padrão dos mocks, Chrome headless novo e anônimo a cada medição, três medições por página e perfil (mediana).",
+  "targets": {
+    "performance": 90,
+    "accessibility": 95,
+    "best-practices": 95,
+    "seo": 90
+  },
+  "results": [
+    {
+      "page": "inicio",
+      "profile": "mobile",
+      "runs": 3,
+      "scores": {
+        "performance": 82,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 3735.5875000000005,
+      "cls": 0.0003512939736432169,
+      "tbt": 22.999999999999773
+    },
+    {
+      "page": "inicio",
+      "profile": "desktop",
+      "runs": 3,
+      "scores": {
+        "performance": 99,
+        "accessibility": 96,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 864.8263999999999,
+      "cls": 0.005873614895900206,
+      "tbt": 0
+    },
+    {
+      "page": "detalhe",
+      "profile": "mobile",
+      "runs": 3,
+      "scores": {
+        "performance": 81,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 4008.718799999999,
+      "cls": 0,
+      "tbt": 5.5
+    },
+    {
+      "page": "detalhe",
+      "profile": "desktop",
+      "runs": 3,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "lcp": 904.3142999999999,
+      "cls": 0.00006456091932359234,
+      "tbt": 0
+    }
+  ]
+}
