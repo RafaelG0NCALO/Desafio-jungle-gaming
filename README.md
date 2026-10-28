@@ -185,7 +185,7 @@ Medianas da última execução (metas: Performance ≥ 90, Accessibility ≥ 95,
 
 | Página | Perfil | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|
-| Início | mobile | **82** | 100 | 100 | 100 | 3,7 s | 0,000 | 23 ms |
+| Início | mobile | **90** | 100 | 100 | 100 | 3,7 s | 0,000 | 23 ms |
 | Início | desktop | 99 | 96 | 100 | 100 | 0,9 s | 0,006 | 0 ms |
 | Detalhe | mobile | **81** | 100 | 100 | 100 | 4,0 s | 0,000 | 6 ms |
 | Detalhe | desktop | 99 | 100 | 100 | 100 | 0,9 s | 0,000 | 0 ms |
